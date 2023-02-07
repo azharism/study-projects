@@ -1,0 +1,225 @@
+ansible====================
+host pattern=====
+1. ansible all --list-host
+2. anisbile demo[0] --list-host (use for host or server ip details)
+3. ansible demo[0:1] --list-host
+==============================================
+ad hoc commands===
+1.ad-hoc (simloe linux command
+2.module
+3.playbook
+=======
+ad-hoc command
+1.ansible demo -a "ls" (use to konw the info of node or server which is connected to ansible)
+2.ansible demo[0] -a "touch file"
+3.ansible demo -a "ls -a"
+4.ansible demo -a 
+
+============================================================================================================
+To install Ansible:
+    1  yum update -y
+    2  yum install epel-release -y
+    3  sudo amazon-linux-extras install epel
+    4  yum install git python python-level python.pp openssl ansible -y
+    5  yum update -y
+
+6. vi /etc/ansible/hosts
+asssign private ip
+
+7. vi /etc/ansible/ansible.cfg
+inventory
+sudo user -----uncomment that
+8.adduser ansible
+passwd ansible(username0
+
+===================================
+now go to node1 and node 2 
+1. adduser 
+2. passwd
+===============================
+1. su -ansible   for every machine
+2.  visudo
+
+ansible ALL=(ALL) NOPASSWD: ALL
+sudo yum install httpd -y   (in all three machines)
+============================================================
+coonection to node between server of ansibel++++
+1. ssh (private ip)
+permissinon denied
+2. vi /etc/ssh/sshd_config
+
+PasswordAuthentication
+##PasswordAuthentication no
+
+
+same process in all nodes
+
+=================================================
+trust relationship...
+1. sshd_config
+2. 
+
+================================================================
+
+ad-hoc commands
+
+1. ansible demo -a "ls  (usd this command on anisble server)
+2. ansible all -a "touch file1"
+3. ansible demo -a "ls -al"
+4. ansible manto -ba "yum remove httpd -y"
+5. ansible demo -a "yum install httpd -y"
+==========================================================================================
+
+module+++++++++++++++++++++++++
+
+1 ansible manto -b -m yum -a  "pkg=httpd state=present"  (yaml file)
+2 ansible manto -b -m yum -a  "pkg=httpd state=latest" 
+3 ansible manto -b -m yum -a  "pkg=httpd state=absent"
+4 ansible manto -b -m service -a "name=httpd state=started"
+5 ansible manto -b -m user -a "name=thanos"
+6 cat /etc/passwd    (used to sh0w user in linux node)
+7 ansible manto[-1] -b -m copy -a "src=file5 dest=/tmp"
+8 ansible manto -b -m copy -a "src=loki dest=/temp"
+========================================================================
+
+setup module=====+++++++++++++++++++++++++++++++++++++++ (used give all the information of node nad its ip addres)
+
+1 ansible manto -m setup
+2 ansible manto -m setup -a "filter=*ipv4*"
+=============================================================================================
+
+
+playbook==========+++++++++++++++++++++++++++++
+
+- host: thanos
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: yes
+
+1. ansible-playbook target.yml
+
+2...
+- host: demo
+  user: ansible
+  become: yes
+  connections: ssh
+
+  task:
+     -name: install httpd on linux
+      action: yum name=httpd state=inatalled
+
+3.  ansible-playbook target.yml
+
+
+
+===============================================================
+variables+++++++++++++++++
+
+vi variable.yml
+
+---
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  vars: 
+      pkgname: httpd
+  task: 
+      
+      - name: install httpd server
+        action: yum name='{{pkgname}} state=installed
+
+4. ansible-playbook variable.yml
+
+
+===============================================================
+handlers++++++++++++++++++++++++++++++++++++++++handler depend on task when previos task done
+
+vi handlers.yml
+
+---
+- host: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  
+  task:
+      - name: install httpd server on centos 
+       actions: yum name=httpd state=installed
+       notify: restart httpd
+
+
+  handlers:
+           - name: restart httpd
+             action: service name=httpd state=restarted
+command  
+ansible-playbook handler.yml ---check  (used for dry run)
+
+=====================================
+
+LOOP=================================================================================
+
+vi loop.yml
+ ---
+- hosts: demo
+  user: ansible
+  connections: ssh
+  task:
+       - name: add list of users in my nodes
+         user: name='{{item}}' state=present
+         with_items:
+                   - thanos
+                   - roger 
+   
+
+command-  ansibl-playbook loop.yml 
+
+
+
+================================================================================
+
+conditional playbook ++++++++++++++++++++++++++++++++++++++
+
+
+- host: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  task:
+    - name: install apache server for debian family
+      command: apt-get -y install apache2
+      when: ansible_os_family == "Debian"
+    - name: install apache server for RedHat family
+      command: yum -y install httpd
+      when: ansible_os_family == "redhat"
+
+command- ansible-playbook condition.yml
+
+======================================================
+vault Playbook =============================================
+
+1. ansible-vault create vault.yml
+2. vi vault.yml
+3. anible-vault edit vault.yml
+
+4. ansible-vault rekey vault.yml
+
+5.
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+

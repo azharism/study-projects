@@ -1,0 +1,175 @@
+docker==============================================
+docker Commands=== 
+===(docker is work on over lay file system copy on write,..cow)
+sudo login first
+1....yum install docker* -y (use for install docker on os)..
+1....systemctl start docker
+2.systemctl enable docker
+2.systemctl status docker
+3.systemctl restart docker (use for restart if docker not working well)
+3.docker images or docker image list (use for showing container and docker images)
+4.docker id (use for connect doker hub for pulling images)
+5.docker pull nginx
+7.buil, pull run , execute ,,kill(docker lifescycle)
+9..docker container run --name ron -dit image id (use for running the container image which is pulled)
+22..docker container run --name ron --restart always -dit image id (use for always run if docker stop)
+10..docker container exec -ti (container id) bash (shell born again shell)...(use for login in particular container)
+11. ip addr (using for shoeing ip addres of a container)
+12..docker stop ( using for stop container)
+14..docker rm -f (container id)....(using for remove container)
+
+
+if docker stop
+1.systemctl stop docker
+2...systemctl start docker && systemctle enable docker
+
+
+
+
+
+
+
+==========================================================================================
+3...docker -rm -f conatainer id  (using for conainer removing)
+4..curl ifconfig.io ( use for roort ip address)
+5..--restart always
+
+
+
+5.yum install docker* -y (use for install docker on os)
+6.docker ps -a (using for showing container id and all details)
+7.ip forwarding (ehternet base machin etho 0, docker0 and virtual ethernet)
+8.ls -la (use for showing hidden files)
+9.df -h (use for showing file and vloume consume and available space of linux os)
+10.du -hs (use for showing file size for single file)
+11.du hs * (use for showing multiple file size which is exist in directory)
+12.df -hT (use for showing all partition mounted of file directory in linux)
+13....  yum install bash-completion -y (for auto completion)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+firewall disable commands use for disabling firewall==============
+
+ types firewall (s/w and h/w)
+
+Selinux is also firewall types 
+
+1.systemctl stop firewalld
+2.systemctl disable firewalld (d for daemon)
+3.systemctl status firewalld (USING for showing status of disbale status)
+
+
+
+
+======================================================================================
+.Nginx is for static webites use
+pushing image on docker hub=========
+2.docker pull centos:7.7.1908
+3.mkdir mydata1
+4.echo "<h1>" hello my world "</h1>" > index.html
+5.vim Dockerfile (use for creating dockerfile)
+6.bg n fg (use for bgrng and forgroung check)
+7.extra packege for enterprise linux (epel)
+In apache webserver(httpd)
+web hosting default location /var/www/html
+
+how to push repo on docker hub
+
+1.docker image 
+2.docker tag (image id) docker (hub Id)
+3.docker push image id
+4.docker inspect (containre id) -f (use for inspect container0
+5.docker logs (container id) -f using for chekcing srverv not responding)
+6.which https (use for file path findind)
+
+
+=======================================================================
+class 4=======docker  (http=80, https=443)
+1..yum install wget unzip -y (use for downloading file images in command line)
+2...curl ifconfig.io (use for finding public id)
+
+
+
+
+port mapping of container with base machine vm========
+1. -p  (use for specify port number)
+2.-P  (use for random port number generate)
+3. docker container run --name () -dit -P container Id (using for port given)
+4.entry point 
+dokcer ps -ad (use for list the exited or disbaled docker)
+5.dokcer rm -f $(docker ps -aq (use for remove all container images)
+6. docker system prune -a (use for delete stop  contianers or exit)
+
+
+how to build docker file=====
+1..docker build -t server:v1 .
+
+
+
+==================================================================================================
+
+class =6======================================
+1.docker rm -f $(docker ps-aq)  (used for deleting all containers)
+2.union fil system ufs
+3. cd /var/lib/docker (where all docker files architecture exist)
+4.ufs-union file system
+5.diff layer (ro+rw) docker architecture)
+
+=============================================================
+types of docker volume 
+1.host volumes
+2.anonymous volume
+3.named volume
+
+docker run -v name:/var/lib/mysql/data image id
+1.docker volume ls (use to check docker volume)
+======================================================================
+
+
+docker network===========================
+var/lib/docker (user for checking all docker file storation)
+1.network in docker
+2.bridge and host and null
+3.docker network ls (use to see network types)
+4.docker inspect container id (use for inspect entity)
+5. docker network create devops --subnet 192.168.100.0/24 -gateway 192.168.100.1 (use to creat network)
+6. docker network connect (use to connect one network to another)
+
+
+
+=================================================================================================================
+1.docker-compose.yml (use to compose docker vim file)
+2.docker-compose up -d ( use to run container of yml)
+3.docker system prune (use to delet all file and container stops folders all)
+4.cat etc/os-release (use to check os of contiainer)
+5.docker-compose scale myapp=5 (us to scale container of exist container)
+6.docker container inspect id (use to check json format)
+7.curl http//192.168.0.1:8080 (use to checkt the contianer networl 
+
+
+
+
+
+
+
+
+
+
+
+

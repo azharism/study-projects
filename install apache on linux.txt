@@ -1,0 +1,66 @@
+linux command==============
+
+Apache installation server on linux==
+1. dnf install httpd -y
+2. systemctl enable httpd 
+3. systemctl start httpd
+4. firewall-cmd --zone=public --permanent --add-service=http
+5. firewall-cmd --reload
+6. echo welcome to the future > /var/www/html/index.html
+ 
+  
+
+
+
+
+
+
+ubuntu command==========
+1.sudo apt-get update
+2. sudo apte-get install nginx
+3. 
+
+==============================================================================
+
+sudo apt update && sudo apt upgrade
+
+sudo apt install apache2
+
+sudo mkdir -p /var/www/info.net/html
+sudo mkdir -p /var/www/info.net/html
+
+sudo chown -R $USER:$USER /var/www/info.net/html
+
+sudo chmod -R 755 /var/www/info.net
+
+nano /var/www/info.net/html/index.html
+
+
+<html>
+<head>
+<title>Hello Citispotter</title>
+</head>
+<body>
+<h1>Hello Citispotter</h1>
+</body>
+</html>
+
+
+
+sudo nano /etc/apache2/sites-available/info.net.conf
+
+
+<VirtualHost *:80>
+ServerAdmin "citispotter"
+ServerName "citispotter"
+ServerAlias "citispotter"
+DocumentRoot /var/www/info.net/html
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+
+sudo a2ensite info.net.conf
+sudo a2dissite 000-default.conf
+
+sudo systemctl restart apache2

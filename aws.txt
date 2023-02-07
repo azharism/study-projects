@@ -1,0 +1,8 @@
+linux serever on aws... command=========================
+1.cat > (used to creat files)
+2. touch (used to creat empty files)
+3. Putty and puttygen (use to creat and acces public key for our server hosted on cloud)
+4.ls -a (used to list files and directories)
+5. ls -ltr (used to list all acces files)
+6. cd .. (used exit one step form your file or directory)
+7.

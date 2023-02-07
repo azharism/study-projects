@@ -1,0 +1,61 @@
+class 4=======docker  (http=80, https=443)
+1..yum install wget unzip -y (use for downloading file images in command line)
+2...curl ifconfig.io (use for finding public id)
+
+
+
+
+port mapping of container with base machine vm========
+1. -p  (use for specify port number)
+2.-P  (use for random port number generate)
+3. docker container run --name () -dit -P container Id (using for port given)
+4.entry point 
+dokcer ps -ad (use for list the exited or disbaled docker)
+5.dokcer rm -f $(docker ps -aq (use for remove all container images)
+6. docker system prune -a (use for delete stop  contianers or exit)
+
+
+how to build docker file=====
+1..docker build -t server:v1 .
+2...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ docker file====================
+
+ dokcer volume and overlay storage docker fs===============
