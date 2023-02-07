@@ -1,1 +1,1 @@
-# study-projects
+my study materials
