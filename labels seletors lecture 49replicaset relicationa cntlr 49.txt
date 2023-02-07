@@ -1,0 +1,135 @@
+kubernates lecture 49============================================================================
+Labels command+++++++++++++
+
+1.kubectl get pods --show-labels
+2.kubectl get pods -l env=deployment
+3.kubectl get pods -l env!=deployment
+4.kubectl delete pod -l env=deployment
+5.kubectl delete pod -l env!=deployment
+6.kubectl delete pod -l env=deployment
+=========================================================
+selectors++++++++++++++++++++++++++++++++++++
+
+1.kubectl get pods -l 'env in(development,testing)'
+2.kubectl get pods -l 'env notin(development,testing)'
+3.kubectl get pods -l class=development, myname=azhar
+4.kubectl delete -f myrc.yml
+5.
+6.
+7.
+
+=========================================================================================================
+EXAMPLE OF LABELS
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: delhipod
+  labels:                                                   
+    env: development
+    class: pods
+spec:
+    containers:
+       - name: c00
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo Hello-Bhupinder; sleep 5 ; done"]
+
+Labels command+++++++++++++
+
+1.kubectl get pods --show-labels
+2.kubectl get pods -l env=deployment
+3.kubectl get pods -l env!=deployment
+4.kubectl delete pod -l env=deployment
+5.kubectl delete pod -l env!=deployment
+6.kubectl delete pod -l env=deployment
+
+
+selectors++++++++++++++++++++++++++++++++++++
+
+1.kubectl get pods -l 'env in(development,testing)'
+2.kubectl get pods -l 'env notin(development,testing)'
+3.kubectl get pods -l class=development, myname=azhar
+4.kubectl delete -f myrc.yml
+============================================================================================================
+
+NODE SELECTOR EXAMPLE
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nodelabels
+  labels:
+    env: development
+spec:
+    containers:
+       - name: c00
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo Hello-Bhupinder; sleep 5 ; done"]
+    nodeSelector:                                         
+       hardware: t2-medium
+
+1.kubectl label nodes ip address hardware=azhar
+
+=============================================================================================================
+replication controller+++++++++++++++++++
+
+kind: ReplicationController               
+apiVersion: v1
+metadata:
+  name: myreplica
+spec:
+  replicas: 2            
+  selector:        
+    myname: Azhar                            
+  template:                
+    metadata:
+      name: testpod6
+      labels:            
+        myname: Azhar
+    spec:
+     containers:
+       - name: c00
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo Hello Azhar; sleep 5 ; done"]
+
+1. kubectl describe rc my replica
+2. kubectl delete pod (pod name)
+3. kubectl scale --replicas=8 rc -l myname=Azhar    (used for scale up )
+4. kubectl get rc
+5. kubectl scale --replicas=2 rc -l myname=Azhar     (use to scale down)
+
+======================================================================================================
+replica set+++++++++++++++++++++++++++++++++
+
+EXAMPLE OF REPLICA SET
+
+
+kind: ReplicaSet                                    
+apiVersion: apps/v1                            
+metadata:
+  name: myrs
+spec:
+  replicas: 2  
+  selector:                  
+    matchExpressions:                             # these must match the labels
+      - {key: myname, operator: In, values: [Azhar, Azher, Azhir]}
+      - {key: env, operator: NotIn, values: [production]}
+  template:      
+    metadata:
+      name: testpod7
+      labels:              
+        myname: Azhar
+    spec:
+     containers:
+       - name: c00
+         image: ubuntu
+         command: ["/bin/bash", "-c", "while true; do echo Azhar; sleep 5 ; done"]
+
+1. kubectl get rs
+2. kubectl scale --replicas=1 rs/myrs
+3. rm -rf (filename)    via ls command
+
+
+
+

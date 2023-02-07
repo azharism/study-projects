@@ -1,0 +1,100 @@
+1. Create a dir with the projects name then in this projects dir create a few folders with or without
+the oriserve folder as shown below.
+projects/facebook
+projects/google
++-- oriserve
+projects/meta
++-- oriserve
+
+projects/oracle
+2. Then create a file in that folder that contains only the oriserve folder. Output should be as shown
+below.xx
+tomcat server
+    amazon-linux-extras list
+
+sudo amazon-linux-extras install tomcat8.5
+
+=========================================================================
+1. yum install java-1.8* -y
+
+2.cd /opt
+ 
+3. wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.83/bin/apache-tomcat-8.5.83.tar.gz
+4. ls
+5 . tar -zvxf 
+6.3
+ls
+7. cd bin
+8. ps -ef | grep tomcat
+
+9.chmod +x  startup.sh
+10.chmod +x  shutdown.sh
+ 11. pwd
+12. echo $PATH
+
+13. ln -s /opt/apache-tomcat-8.5.83/bin/startup.sh /usr/local/bin/tomcatup
+
+14. ln -s /opt/apache-tomcat-8.5.83/bin/shutdown.sh /usr/local/bin/tomcatdown
+tomcatup
+cd ..
+cd ..
+
+ls
+coonector port change 8090
+tomcat down
+find / -name context.xml
+
+vi /opt/apache-tomcat-8.5.83/webapps/host-manager/META-INF/context.xml
+vi /opt/apache-tomcat-8.5.83/webapps/manager/META-INF/context.xml
+<!-- valve classname --> (edit the file)
+tomcatdown
+tomcatup
+
+
+vi tomcat-user.xml
+
+    <role rolename="manager-gui"/>
+    <role rolename="manager-script"/>
+    <role rolename="manager-jmx"/>
+    <role rolename="manager-status"/>
+    <user username="admin" password="admin" roles="manager-gui,manager-script,manager-jmx,manager-status"/>
+    <user username="tomcat" password="tomcat" roles="manager-gui,manager-script,manager-jmx" />
+
+
+
+ 
+
+
+
+=====================
+manage
+
+15. tomcatup
+
+
+
+jenkins installation=====================================
+
+sudo yum update –y
+
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+sudo yum upgrade
+
+sudo amazon-linux-extras install java-openjdk11 -y
+
+sudo yum install jenkins -y
+
+sudo systemctl enable jenkins
+
+sudo systemctl start jenkins
+
+sudo systemctl status jenkins
+
+
+ssh agent 
+
+

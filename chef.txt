@@ -1,0 +1,139 @@
+********CODE USED IN THE LAB******
+
+
+LINK TO DOWNLOAD CHEF-WORKSTATION
+https://packages.chef.io/files/stable...
+
+
+
+file '/myfile' do
+content 'Welcome to Technical Guftgu'
+action :create
+end
+
+
+1. chef generate coobook test-cookbook
+2. chef generate recipe test-recipe
+3. chef exec ruby -c test-cookbook/recipes/test-receipe.rb
+3. chef-client -zr "recipe[test-cookbook::testrecipe]"
+chef-client -zr "recipe[apache-cookbook::apach-recipe]"
+5. ohai cpu
+6. ohai cpu/0/mhg
+7. ohai 
+
+*******
+
+
+package 'tree' do
+action :install
+end
+
+file '/myfile2' do
+content 'This is My Second Project code'
+action :create
+owner 'root'
+
+============================================
+chef exec ruby -c
+group 'root'
+end
+
+*******
+package 'httpd' do
+action :install
+end
+
+file '/var/www/html/index.html' do
+content 'Welcome to Technical Guftgu'
+action :create
+end
+
+
+service 'httpd' do
+action [:enable, :start]
+end
+
+======================================================================================
+
+attributes cod=========================
+
+file '/basicinfo' do
+ content "This is to get Attributes
+ HOSTNAME: #{node['hostname']}
+ IPADDRESS: #{node['ipaddress']}
+ CPU: #{node['cpu']['0']['mhz']}
+ MEMORY: #{node['memory']['total']}"
+ owner 'root'
+ group 'root'
+action :create
+end
+
+=================================================================================================================
+chef commands++++++++++++++++++
+
+1. knife cookbook list  (used to see the cookbook list on chefserver)
+
+2. knife cookbook delete <cookbook name> -y (used to delete cookbook form chef-server)
+
+3. knife node list (used to see the node present in chef-server)
+
+4. knife node delete <node name> -y  (used to dlete nod from chef-server)
+
+5. knife client list (used to see the client list in chef server)
+
+6. knife client delete <client name> -y (used to delete client from chef server)
+
+7. knife role list  (used to see assign role in chef server)
+
+8. knife role delete <role name> -y  (used to delete role from chef server)
+
+9. knife cookbook upload <cookbook name> (used to upload cookbook on chef server)
+
+10.knife ssh check
+
+11.knife cookbook upload <cookbook name>
+
+12. knife node show node1
+
+13 knife ssl check  (used to check windows machine connected to linux chef server)
+
+14.knife node show node1 
+
+15.knife node run_list set node2 "recipe[apache-cookbook::apache-recipe]"
+
+16 vi /etc/cronjob
+
+===================================================================================================
+bootstrap command+++++
+
+1. knife bootstrap <privateip of node> --ssh-user ec2-user --sudo -i <node kye.pem> -N <node name>
+
+ for example----
+ 
+ knife bootstrap 172.31.30.89 --ssh-user ec2-user --sudo -i nod.pem -N node1 -y
+knife bootstrap 172.31.20.99 --ssh-user ec2-user --sudo -i nod.pem -N node2 -y
+knife bootstrap 172.31.19.30 --ssh-user ec2-user --sudo -i nod.pem -N node3 -y
+knife bootstrap 172.31.26.58 --ssh-user ec2-user --sudo -i nod.pem -N node4 -y
+
+
+knife node run_list set node1 "roles[devops]"
+
+knife node run_list set node2 "role[devops]"
+knife node run_list set node3 "role[devops]"
+knife node run_list set node4 "role[devops]"
+
+
+========================================================================================================
+roles+++++++++++++++++
+
+1. knife role from file roles/devops.rb
+2 knife node run_list set node1 "role[devops]"
+
+172.31.30.89
+ 172.31.20.99
+
+172.31.19.30
+
+172.31.26.58
+
+

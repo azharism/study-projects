@@ -1,0 +1,81 @@
+provider code 1======
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.0"
+    }
+  }
+}
+
+
+=====================================================================
+Secret access key rZ7A4yySPlhSb5fltkHf2mg7JHLdT8rHjDVjYpO1
+   
+Access key ID   AKIAZFLLLDRNVEWZUUUE
+
+===================================================================================
+
+# Configure the AWS Provider
+
+provider "aws" {
+  version = "~> 4.0"
+  region  = "ap-southeast-1"
+}
+
+=======================================================
+
+code--2
+
+provider "aws" {
+  region     = "ap-south-1"
+  access_key = "my-access-key"
+  secret_key = "my-secret-key"
+}
+
+===========================================================================
+
+code 3--
+
+resource "aws_instance" "web" {
+  ami           = "ami-0af2f764c580cc1f9
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "linux-server"
+  }
+}
+
+
+====================================
+
+aws cli downloads===========
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+1. az login gmail id 
+
+2. az group create -l westus -n MyResourceGroup
+
+3. link https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-create
+
+
+4 cli for linux ====================
+

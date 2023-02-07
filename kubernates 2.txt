@@ -1,0 +1,75 @@
+Kubernates=========================================================
+lecture 52+++++++++++++++++++++++++++++++++++++++++++
+
+name space resource qouta and limits============================
+1. kubectl get pods -n (namespacename)     #used to see the namsespace qouta resource
+
+
+==============================NAMESPACES===================================
+apiVersion: v1
+kind: Namespace
+metadata:
+   name: dev
+   labels:
+     name: dev
+==================================================================
+
+vi pod.yml
+
+
+kind: Pod                              
+apiVersion: v1                     
+metadata:                           
+  name: testpod                  
+spec:                                    
+  containers:                      
+    - name: c00                     
+      image: ubuntu              
+      command: ["/bin/bash", "-c", "while true; do echo Technical Guftgu; sleep 5 ; done"]
+  restartPolicy: Never       
+
+
+1.kubectl apply -f pod.yml -n dev
+2. kubectl get pods -n dev
+3.kubectl delete -f pod.yml -n dev
+=============================================================================
+
+$ kubectl config set-context $(kubectl config current-context) --namespace=dev  #used to set default namespace to assign namespaces
+$ kubectl config view | grep namespace:    # used to see which namespce data fetched
+
+
+=======================================================================================================
+resource qouta and limit and request
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resources
+spec:
+  containers:
+  - name: resource
+    image: centos
+    command: ["/bin/bash", "-c", "while true; do echo Technical-Guftgu; sleep 5 ; done"]
+    resources:                                          
+      requests:
+        memory: "64Mi"
+        cpu: "100m"
+      limits:
+        memory: "128Mi"
+        cpu: "200m"
+
+
+=========================================================================================
+
+============RESOURCEQUOTA========================================
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+   name: myquota
+spec:
+  hard:
+    limits.cpu: "400m"
+    limits.memory: "400Mi"
+    requests.cpu: "200m"
+    requests.memory: "200Mi"

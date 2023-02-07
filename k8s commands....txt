@@ -1,0 +1,12 @@
+k8s command===================================================
+1.kubctl get pods (podname)
+2.kubectl get nods
+3.kubectl apply -f pod.yml
+4.kubectl get pods -o wide
+5.kubectl describe pods (name)
+6.kubectl delete pod (name)
+7.kubectl logs -f (podname)
+8.kubectl logs -f testpod -c c00
+9.curl 172.16.0.1:80  (used to check port mapping of server it listen or not)
+10.
+11.
