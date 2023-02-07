@@ -1,0 +1,27 @@
+nagios============================
+how to install on ec2 machine===
+step1=============================
+1. yum install httpd php
+2. yum install gcc glibe glibe-common
+3. yum isntall gd ged-devel
+
+step2 ================================
+create username
+1. adduser -m nagios
+2. passwd nagios
+3.groupadd nagioscmd
+4.usermod -a -G nagioscmd nagios
+5.usemod -a -G nagioscmd apache
+
+Step 3===============================
+1. mkdir ~downloads
+2. cd ~/downloads
+3.wget nagios tarfile
+4. wget nagios plugins
+
+Step 4==========================
+compile and install nagios
+
+
+step 5====
+1.make install-webconfig
