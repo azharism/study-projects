@@ -1,0 +1,48 @@
+jenkins installation via docker-compose=====================
+
+Pre-requisites:
+New Ubuntu EC2 up and running with at least t2.small
+Port 8080 is opened in security firewall rule
+==========================================================================
+
+Change Host Name to Jenkins
+1. sudo hostnamectl set-hostname Jenkins
+========================================================
+Perform system update
+2.sudo apt-get update
+=================================================
+ Install Docker-Compose
+3.sudo apt-get install docker-compose -y
+========================================================
+
+Create docker-compose.yml
+this yml has all configuration for installing Jenkins.
+4. sudo vi docker-compose.yml
+
+============================================================
+
+version: '3'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    restart: always
+    privileged: true
+    user: root
+    ports:
+      - 8080:8080
+      - 50000:50000
+    container_name: jenkins
+    volumes:
+      - /home/ubuntu/jenkins_compose/jenkins_configuration:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+
+
+======================================================================================
+
+Execute Docker compose command:
+5. sudo docker-compose up -d 
+
+============================================================
+
+Make sure Jenkins is up and running by checking the logs
+6.sudo docker-compose logs --follow
