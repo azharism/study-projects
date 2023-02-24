@@ -3,7 +3,7 @@ Install Ansible on Ubuntu | How to setup Ansible on Ubuntu 18.0.4 | Ansible inst
 1 Change Host Name to AnsibleMgmtNode
 sudo hostnamectl set-hostname AnsibleMgmtNode
 
-2. Update Repository by including the official project’s PPA
+2. Update Repository by including the official projectâ€™s PPA
 
 sudo apt-get update
 sudo apt-add-repository -y ppa:ansible/ansible
@@ -19,8 +19,14 @@ sudo apt-get install -y ansible
 5. sudo apt install python-pip -y
  ( this is just comment -  Package manager for python)
 
-Install Boto Framework - AWS SDK
+
+6. You need to install Phython Pip manager first.
+sudo apt install python-pip
+
+then install Boto3 module using Pip
+ 
 sudo pip install boto boto3
+
 
 
 
