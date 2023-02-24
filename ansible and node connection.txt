@@ -1,0 +1,21 @@
+How to setup Jenkins on Ubuntu using Ansible playbook | Setup Java, Jenkins, 
+Maven on Ubuntu EC2 using Ansible Playbook
+
+===========================================
+
+how to setup ansibile node and host node===
+
+1. ssh-kegen
+2. sudo cat ~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxD2zKMdADdpetU2AutevazIdchQPEimnpbioCh7Xjxv/vErOq3LgZfFTdxXQqcwdmfnyWe50RoI/A+sH6Iq9ZzHxlXzXZvDp/k2sUQPO4f4qg78qVWBPm6UALHmcKf4OzRzy9PVcY8UbBBKaeyR8pBICAu0CVRyvNlxSBDJboB7w4FdVwdiYKorWel+EYkFsoms57bZHsPmQrRM5HBSQJZmKNgplZwh4/Z3/uQHynEMAnv5Ne46izNR+SwsIvkSyGCkVEEiYWVYGDhvoPfssf4zI49UPcdHVtW3WQiN7z2TVuLiQMgkhj8Pd0dWyL7bG289LPrZWYmFCcQZK6BeqN ubuntu@AnsibleMgmtNode
+
+
+==============================================================
+on node directory node 
+1. sudo vi ~/.ssh/authorized_keys
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxD2zKMdADdpetU2AutevazIdchQPEimnpbioCh7Xjxv/vErOq3LgZfFTdxXQqcwdmfnyWe50RoI/A+sH6Iq9ZzHxlXzXZvDp/k2sUQPO4f4qg78qVWBPm6UALHmcKf4OzRzy9PVcY8UbBBKaeyR8pBICAu0CVRyvNlxSBDJboB7w4FdVwdiYKorWel+EYkFsoms57bZHsPmQrRM5HBSQJZmKNgplZwh4/Z3/uQHynEMAnv5Ne46izNR+SwsIvkSyGCkVEEiYWVYGDhvoPfssf4zI49UPcdHVtW3WQiN7z2TVuLiQMgkhj8Pd0dWyL7bG289LPrZWYmFCcQZK6BeqN ubuntu@AnsibleMgmtNode
+
+
+
+
+
