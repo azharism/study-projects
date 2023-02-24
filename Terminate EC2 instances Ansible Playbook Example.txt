@@ -1,0 +1,34 @@
+Terminate EC2 instances Ansible Playbook Example====
+
+1. udo vi /etc/ansible/hosts 
+
+Add the below two lines in the end of the file:
+[localhost]
+local
+
+save the file and come out of it.
+
+2. sudo vi terminate.yml 
+
+---
+ - name: ec2 provisioning using Ansible
+   hosts: local
+   connection: local
+   gather_facts: False
+
+ - hosts: local
+   gather_facts: False
+   connection: local
+   vars:
+     - region: 'us-east-2'
+     - ec2_id: 'i-05f39cfb80c97df38'
+   tasks:
+     - name: Terminate instances
+       local_action: ec2
+         state='absent'
+         instance_ids='{{ ec2_id }}'
+         region='{{ region }}'
+         wait=True
+
+=========================================================================
+6 ansible-playbook terminate.yml -e ec2_id=i-xxxx
