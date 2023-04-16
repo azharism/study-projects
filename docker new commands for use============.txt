@@ -1,0 +1,96 @@
+docker commands for use===========================
+sudo apt update
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+apt-cache policy docker-ce
+
+sudo apt install docker-ce -y
+
+sudo systemctl status docker
+sudo apt update
+
+
+sudo apt install docker.io -y
+
+sudo snap install docker
+
+docker --version
+docker
+
+sudo docker search [keyword]
+
+sudo docker search ubuntu
+
+sudo docker pull [image-name]
+sudo docker pull ubuntu
+
+sudo docker images
+
+
+sudo docker run hello-world
+
+
+sudo docker run [image-name]
+
+
+sudo docker run --name [container-name] [image-name]
+sudo docker run ubuntu
+
+sudo docker run -it ubuntu
+
+
+sudo docker ps
+
+sudo docker ps -a
+sudo docker ps -l
+
+sudo docker start [container-ID | container-name]
+sudo docker start 5f9478691970
+
+sudo docker stop [container-ID | container-name]
+sudo docker stop 5f9478691970
+sudo docker rm silly_hamilton
+
+============================================================================================
+
+Working With Docker Volumes===========================
+
+sudo docker volume create [volume_name]
+sudo docker volume create example-volume
+
+sudo docker volume rm [volume_name]
+
+==========================================================================================================
+
+Docker Network Commands==================================
+
+docker network connect [network-name]	Connects a container to a network.
+
+docker network disconnect [network-name]	Disconnects a container from the specified network.
+
+docker network inspect [network-name]	Outputs detailed information on the specified network or networks.
+
+
+docker network ls	Lists all networks in a container.
+
+docker network prune	Removes all unused networks in a container
+
+docker network rm [network-name]	Removes the specified network or networks.
+
+============================================================================================================================
+
+networking-----
+
+sudo docker network ls
+
+sudo docker network inspect bridge
+
+
+
+
+
