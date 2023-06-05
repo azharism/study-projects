@@ -16,7 +16,7 @@ cd ~
 mkdir playbooks  
 cd playbooks
 
-=============================
+===========================
 
 2.Create Ansible playbook
 sudo vi create_ec2.yml
