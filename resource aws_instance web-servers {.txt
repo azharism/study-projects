@@ -1,0 +1,26 @@
+resource "aws_instance" "web-servers" {
+  count                       = 1
+  ami                         = "ami-053b0d53c279acc90"
+  instance_type               = "t2.micro"
+  user_data                   = <<-EOF
+              #!/bin/bash
+              echo "hello-Azhar" > index.html
+              nohup busybox httpd -f -p 8080 &
+              EOF
+  user_data_replace_on_change = true
+  key_name                    = "terraform-1"
+  security_groups             = ["launch-wizard-1"]
+  tags = {
+    Name = "web-servers -${count.index}" #for serialwise naming convention or tagging
+  }
+}
+
+output "public_ip" {
+  value = ["${aws_instance.web-servers.*.public_ip}"]
+}
+
+output "private_ip" {
+  value = ["${aws_instance.web-servers.*.public_ip}"]
+}
+====================================================================
+====================================================================
