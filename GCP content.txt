@@ -30,6 +30,7 @@ firstly disable auto delete disk
 1. gcloud compute instances set-disk-auto-delete vm-name --no-auto-delete --disk=sourceDiskName
 2. gcloud compute images create image-name --source-disk=source-disk --source-disk-zone=zone --storage-location=asia or us --force
 3. gcloud compute images describe image-name
+4. gcloud compute images delete images-name
 
 =====================================================================================================================================================
 
