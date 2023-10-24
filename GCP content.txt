@@ -23,6 +23,7 @@ for disk resize via cloudshell====
 ==================================================================================================================================================
 
 images creation via cloud shell----------
+gcloud config set project azhar-cloud421
 
 firstly disable auto delete disk
 
