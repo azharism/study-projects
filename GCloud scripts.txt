@@ -1,0 +1,296 @@
+GCloud scripts
+* List active account name
+
+gcloud auth list
+* List project ID
+
+gcloud config list project
+* create vm instance with gcloud
+
+gcloud compute instances create [NAME] --machine-type [TYPE] --zone [ZONE]
+* gcloud vm instance help
+
+gcloud compute instances create --help
+* Set default zone and region for VM instances
+
+gcloud config set compute/zone [ZONE]
+gcloud config set compute/region [REGION]
+(Example follows):
+
+gcloud config set compute/zone us-central1-a
+gcloud config set compute/region us-central1
+* Default regions and zones can also be set using:
+
+google-compute-default-zone
+google-compute-default-region
+* to see default region and zone settings run
+
+gcloud compute project-info describe --project [PROJECT ID] 
+* Enter SSH through gcloud
+
+gcloud compute ssh [VMNAME] --zone [ZONE]
+* Check if a server is ready for RDP connections
+
+gcloud compute instances get-serial-port-output instance-1 --zone us-central1-a (USE YOUR INSTANCE NAME AND ZONE)
+(SERVER IS READY WHEN OUPUT == “Finished running startup scripts”)
+
+* if not in Cloud Shell then gcloud can be installed as part of the Google Cloud SDK with
+
+gcloud init
+Set up Environment variables in gcloud
+Env variables define your environment. These can be used to save time when writing scripts that contain APIs and executables
+
+* Project variable ID
+
+export PROJECT_ID=<your_project_ID>
+* Set ZONE env var
+
+export ZONE=<your_zone>
+* Verify correct variables:
+
+echo $PROJECT_ID
+echo $ZONE
+* Create a vm instance w/env vars:
+
+gcloud compute instances create INSTANCE_NAME --machine-type n1-standard-2 --zone $ZONE
+Create your own instance name and use whatever type of machine type you want to use. The $ZONE refers to the zone env. Variable.
+
+* View a list of configurations in your gcloud env
+
+gcloud config list
+* Check that all properties are set:
+
+gcloud config list --all
+* List components
+
+gcloud components list
+Gcloud help
+
+Get simple usage guidelines with the -h flag. i.e.
+
+gcloud -h
+Obtain verbose help with the --help flag. Or run gcloud help command.
+
+gcloud help
+gcloud config --help
+To scroll through the help use Enter or Spacebar keys.
+
+Exit content with q
+
+q
+
+EQUIVALENT HELP COMMANDS 
+
+gcloud config --help
+gcloud help config
+* Shortcut for help toggle: F2
+
+* F2 help changes help STATE, toggle ON or OFF with F2
+
+Auto-complete with gcloud prompts
+glcoud interactive 
+This sets up auto prompting for commands and flags with inline help snippets.
+
+* Install beta components
+
+gcloud components install beta
+* Enter gcloud interactive mode
+
+gcloud beta interactive
+* When using interactive mode click on the tab key to complete file path and resource args. If a dropdown menu appears use tap to move through the list. Use the Space bar to select a choice.
+
+Test this with:
+
+gcloud compute instances describe <your_vm_instance_name>
+Kubernetes Engine on gcloud
+* Create a cluster (start with a letter, end with alphanumeric, < 40 characters) (ignore output warnings, allow time to finish cluster creation)
+
+gcloud container clusters create [CLUSTER-NAME]
+* Get auth reds for the cluster. Required to interact w/cluster.
+
+gcloud container clusters get-credentials [CLUSTER-NAME]
+Output will look like: 
+
+`Fetching cluster endpoint and auth data
+
+kubeconfig entry generated for my-cluster`
+
+* Create a new deployment for containerized apps (This uses a premade sample app. Use your own image for realzies)
+
+kubectl create deployment hello-server --image=gcr.io/google-samples/hello-app:1.0
+Output in this scenario should be:
+
+`deployment.apps/hello-server created`
+
+* create kubernetes service, a resource to expose app to external traffic.
+
+Kubectl expose deployment hello-server --type=LoadBalancer --port 8080
+--port specifies the port that the container exposes
+
+type=LoadBalancer creates a compute engine load balancer for the container
+
+Should see output:
+
+`service/hello-server exposed` (and it’s no big surprise…)
+
+* Inspect the hello-server service with kubectl get
+
+kubectl get service
+* If external IP column is ‘pending’ then try again after 60 seconds
+
+* To view app, copy the external IP address and enter:
+
+http://[EXTERNAL-IP]:8080
+
+* to delete a cluster:
+
+gcloud container clusters delete [CLUSTER-NAME]
+* Type Y when prompted to confirm delete. Deleting can take a couple minutes.
+
+Creating Web Server Instances
+Write a script to create Nginx web server clusters 
+
+In the shell create a startup script that will be used by every virtual machine instance. This script will set up an Nginx server upon startup:
+
+cat << EOF > startup.sh
+#! /bin/bash
+apt-get update
+apt-get install -y nginx
+service nginx start
+sed -i -- 's/nginx/Google Cloud Platform - '"\$HOSTNAME"'/' /var/www/html/index.nginx-debian.html
+EOF
+Next create an instance template that will use the startup script
+
+gcloud compute instance-templates create nginx-template \
+         --metadata-from-file startup-script=startup.sh
+You’ll get an output showing the that template was created. 
+
+Next thing to do is create a target pool. This allows a single access point to all instances in a group. It’s required for load balancing. At least the way we’re doing it here.
+
+gcloud compute target-pools create nginx-pool
+You’ll get an output confirming the target pool.
+
+Next you’ll create a managed instance group using that instance template.
+
+gcloud compute instance-groups managed create nginx-group \
+         --base-instance-name nginx \
+         --size 2 \
+         --template nginx-template \
+         --target-pool nginx-pool
+You’ll then receive an output confirming the MIG (managed instance group)
+
+This example creates two VMs with names prefixed with “nginx-“. Allow time for VMs to spin up.
+
+You can see these by listing the compute engine instances:
+
+gcloud compute instances list
+Next we configure a firewall. This allows us to connect the machines to port 80 using the EXTERNAL_IP. (External_IP is derived from compute instance list output)
+
+gcloud compute firewall-rules create www-firewall --allow tcp:80
+Open your favorite browser (I use Brave) and check out the instance via http://[EXTERNAL_IP/	
+
+Create a network load balancer
+Create a L3 network load balancer that targets the instance group
+
+gcloud compute forwarding-rules create nginx-lb \
+         --region us-central1 \
+         --ports=80 \
+         --target-pool nginx-pool
+Output will confirm 
+
+* List all Google compute engine forwarding rules in the project:
+
+gcloud compute forwarding-rules list
+Visit the load balancer from a browse using the IP_ADDRESS.
+
+http://IP_ADDRESS/
+
+Create an HTTPS Load Balancer
+* Create a health check
+
+gcloud compute http-health-checks create http-basic-check
+Output will confirm creation.
+
+Define an HTTP Service and map a port name to the instance group. Once created, the load balancer will forward traffic to the named port.
+
+gcloud compute instance-groups managed \
+       set-named-ports nginx-group \
+       --named-ports http:80
+Output will confirm
+
+Create a back-end service:
+
+gcloud compute backend-services create nginx-backend \
+      --protocol HTTP --http-health-checks http-basic-check --global
+Output will confirm
+
+* Add the instance group into the backend service:
+
+gcloud compute backend-services add-backend nginx-backend \
+    --instance-group nginx-group \
+    --instance-group-zone us-central1-a \
+    --global
+Create a default URL map that directs all incoming requests to all instances:
+
+gcloud compute url-maps create web-map \
+    --default-service nginx-backend
+Output will confirm
+
+Create a target HTTP proxy to route requests to URL map
+
+gcloud compute target-http-proxies create http-lb-proxy \
+    --url-map web-map
+Output will confirm
+
+Create a global forwarding rule to handle and route incoming requests. Note that the global forwarding rule does not support multiple ports.
+
+gcloud compute forwarding-rules create http-content-rule \
+        --global \
+        --target-http-proxy http-lb-proxy \
+        --ports 80
+Several minutes may be required for configurations to propagate.
+
+List with:
+
+gcloud compute forwarding-rules list
+Connect in a web browser using the IP_ADDRESS
+
+These things can take 3 - 5 minutes to go live.
+
+Enter SSH through gcloud with env variables
+* Create a wrapper around SSH to handle auth and mapping of instance names to IP addresses
+
+gcloud compute ssh VM_INSTANCE_NAME --zone $ZONE
+* Type “y” to continue after warning, follow prompts
+
+* Exit SSH with:
+
+exit
+
+The gcloud HOME directory
+The home dir persists always across projects between all Cloud Shell sessions with 5GB of storage
+
+* Change current working dir
+
+cd $HOME
+* Open .bashrc config file using the vi text editor:
+
+vi ./.bashrc
+This will open and display the contents of the file. To exit, press the ESC key and then “:wq” to exit editor
+
+ESC
+
+:wq
+SSH commands and scripts
+* Get root access using sudo 
+
+sudo su -
+* update OS
+
+apt-get update
+* install NGINX (establish NGINX on GCP VM Instance
+
+apt-get install nginx -y
+* Check that NGINX is running 
+
+ps auwx | grep nginx
