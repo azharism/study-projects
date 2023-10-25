@@ -31,7 +31,10 @@ firstly disable auto delete disk
 2. gcloud compute images create image-name --source-disk=source-disk --source-disk-zone=zone --storage-location=asia or us --force
 3. gcloud compute images describe image-name
 4. gcloud compute images delete images-name
-
+===============================================================================================================================
+machine-image creation via cli--------------------------
+1.gcloud compute machine-images create machine-image-name --source-instance=source-vm-name --source-instance-zone=us-central-a
+2.gcloud beta compute instances create vm-name --zone=zone-name --source-machine-image=machine-image-name --machine-type=e2-standard-2 
 =====================================================================================================================================================
 
 
