@@ -36,6 +36,15 @@ machine-image creation via cli--------------------------
 1.gcloud compute machine-images create machine-image-name --source-instance=source-vm-name --source-instance-zone=us-central-a
 2.gcloud beta compute instances create vm-name --zone=zone-name --source-machine-image=machine-image-name --machine-type=e2-standard-2 
 =====================================================================================================================================================
+google cloud storage cloudshell commands=============================================================================================================
+create a bucket------
+1. gsutil mb -b on -l us-central1 gs://azhar_cloud143   (gs://azhar_cloud124 defines bucket name)
+upload the file on cloudshell to store in bucket object
+2. cloudeshell->file->upload file
+3.pwd
+4. gsutil cp imagename.jpg gs://azhar_cloud123  (bucket name)
+downlaod the object from your bucket 
+5. gsutil cp gs://azhar_cloud143/'Screenshot (151).png' /home/azharism51/download.png
 
 
 =======================================================================================================================================================
