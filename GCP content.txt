@@ -38,6 +38,21 @@ machine-image creation via cli--------------------------
 =====================================================================================================================================================
 google cloud storage cloudshell commands=============================================================================================================
 create a bucket------
+1. gsutil mb gs://your-bucket-name   ( creat a bucket)
+2.gsutil cp your-file.txt gs://your-bucket-name/  ( Copying a File to a Bucket:)
+3. gsutil cp gs://your-bucket-name/your-file.txt ./local-directory/  (downlaod the object from your  a Bucket Object Locally:)
+4. gsutil ls   ( List bucket)
+5. gsutil ls gs://your-bucket-name/     ( List Objects in a Bucket:)
+6. gsutil rm gs://your-bucket-name/your-file.txt   (deleting a file in a bucket)
+7. gsutil rb gs://your-bucket-name             (deleting a bucket)
+8. gsutil rsync -r local-directory gs://your-bucket-name/    (synking a local file with bucket)
+9. gsutil acl ch -u AllUsers:R gs://your-bucket-name/your-file.txt   (Access Control)
+10. gsutil acl ch -d AllUsers gs://your-bucket-name/your-file.txt    rovoke all access from bucket)
+11. gsutil -o 'GSUtil:default_storage_class=NEARLINE' cp your-file.txt gs://your-bucket-name/  ( Defining Storage Class:)
+
+
+
+
 1. gsutil mb -b on -l us-central1 gs://azhar_cloud143   (gs://azhar_cloud124 defines bucket name)
 upload the file on cloudshell to store in bucket object
 2. cloudeshell->file->upload file
@@ -45,6 +60,13 @@ upload the file on cloudshell to store in bucket object
 4. gsutil cp imagename.jpg gs://azhar_cloud123  (bucket name)
 downlaod the object from your bucket 
 5. gsutil cp gs://azhar_cloud143/'Screenshot (151).png' /home/azharism51/download.png
+6. gsutil cp gs://azhar_cloud143/ file.name.png gs://azhar_cloud143/myfolder/file.name.png
+7.gsutil ls -l gs://bucket-name/filename
+8. gsutil iam ch allUsers:objectViewer gs://bucket-name     (giving public access)
+vv.gsutil iam ch -d allUsers:objectViewer gs://bucket-name   (remove the public access)
+9 gsutil rm gs://bucketname/filename      (delete an object or file)
+10 gsutil rm -r gs://bucket-name           (delete a bucket)
+11. 
 
 
 =======================================================================================================================================================
