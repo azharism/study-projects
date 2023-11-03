@@ -38,7 +38,6 @@ machine-image creation via cli--------------------------
 =====================================================================================================================================================
 google cloud storage cloudshell commands=============================================================================================================
 create a bucket------
-1. gsutil mb gs://your-bucket-name   ( creat a bucket)
 2.gsutil cp your-file.txt gs://your-bucket-name/  ( Copying a File to a Bucket:)
 3. gsutil cp gs://your-bucket-name/your-file.txt ./local-directory/  (downlaod the object from your  a Bucket Object Locally:)
 4. gsutil ls   ( List bucket)
