@@ -71,7 +71,21 @@ versioning of bucket----------------------------
 2. gsutil versioning get gs://bucket-name          (to get the bcuket versioning info)
 3. gsutil ls -a gs://bucket-name
 4. gsutil cp gs://madiha/objetc.txt#1699041664252818 gs://madiha/objetc.txt    (versioning update )
-5 gsutil rm gs://bucket-name version name  (delete an specific version)
+5 gsutil rm gs://bucket-name version name  (delete an specific version)    
+
+==============================================================================================================================
+signed url creation steps and and command-------------
+1.create a bucket and upload an obeject
+2.go to api and sercvices create credentials for service account doesnt exist
+3.create a key in json format
+4.upload the json file key in cloud shell
+5.dowlaod some libraries command below
+6. pip install pyopenssl
+7.gsutil gs://buckect-name
+7 gsutil signurl -d 60s key.json gs://madiha/object-name 
+
+
+
 
 =======================================================================================================================================================
 VPC cli command+++++++++++++++++++
