@@ -65,8 +65,13 @@ downlaod the object from your bucket
 vv.gsutil iam ch -d allUsers:objectViewer gs://bucket-name   (remove the public access)
 9 gsutil rm gs://bucketname/filename      (delete an object or file)
 10 gsutil rm -r gs://bucket-name           (delete a bucket)
-11. 
-
+====================================================================================================================================================
+versioning of bucket----------------------------
+1. gsutil versioning set off gs://bucket-name      (bucket versioning on or off)
+2. gsutil versioning get gs://bucket-name          (to get the bcuket versioning info)
+3. gsutil ls -a gs://bucket-name
+4. gsutil cp gs://madiha/objetc.txt#1699041664252818 gs://madiha/objetc.txt    (versioning update )
+5 gsutil rm gs://bucket-name version name  (delete an specific version)
 
 =======================================================================================================================================================
 VPC cli command+++++++++++++++++++
