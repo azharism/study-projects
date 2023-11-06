@@ -19,6 +19,16 @@ use fo resize machine type cusomize way=======================
 for disk resize via cloudshell====
 11. gcloud compute disks resize instance-1 --zone us-central1-c --size 40
 =======================================================================================================================================
+static website hosting on cloud storage-----------------
+1. go to cloudshell
+2. wget and url link for website download
+3. ls
+smaple-banner.zip
+5.mkdir website
+6. mv sample-banner website
+7. cd website
+8. unzip sample banner-website
+9.gsuitl -m cp -r sample-website gs://madiha
 
 ==================================================================================================================================================
 
