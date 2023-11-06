@@ -75,6 +75,7 @@ versioning of bucket----------------------------
 
 ==============================================================================================================================
 signed url creation steps and and command-------------
+work as a root user-------
 1.create a bucket and upload an obeject
 2.go to api and sercvices create credentials for service account doesnt exist
 3.create a key in json format
