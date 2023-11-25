@@ -105,6 +105,9 @@ VPC cli command+++++++++++++++++++
 3.gcloud compute firewall-rules create auto-vpc-allow-rdp-2 --project=triple-cab-353707 --network=projects/triple-cab-353707/global/networks/auto-vpc --description=Allows\ RDP\ connections\ from\ any\ source\ to\ any\ instance\ on\ the\ network\ using\ port\ 3389. --direction=INGRESS --priority=65534 --source-ranges=0.0.0.0/0 --action=ALLOW --rules=tcp:3389
 4.gcloud compute firewall-rules create auto-vpc-allow-ssh-2 --project=triple-cab-353707 --network=projects/triple-cab-353707/global/networks/auto-vpc --description=Allows\ TCP\ connections\ from\ any\ source\ to\ any\ instance\ on\ the\ network\ using\ port\ 22. --direction=INGRESS --priority=65534 --source-ranges=0.0.0.0/0 --action=ALLOW --rules=tcp:22
 ===============================================================================================================================================================
+app engine commands=================================================
+
+1.gcloud deploy app -v servicename
 
 
 
