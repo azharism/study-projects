@@ -107,7 +107,17 @@ VPC cli command+++++++++++++++++++
 ===============================================================================================================================================================
 app engine commands=================================================
 
-1.gcloud deploy app -v servicename
+1.gcloud app deploy   (deploy the app)
+2. gcloud app deploy app.yaml  ( Deploy with a Specific Configuration File)
+3. gcloud app versions list   (List Deployed Versions)
+4. gcloud app services set-traffic [SERVICE] --splits=[SPLIT]   ( Used to split traffic between different versions of a service)
+5. gcloud app logs tail -s [SERVICE]  (Streams logs from the specified service)
+6. gcloud app browse  (Opens the URL of your deployed app in the default web browser.)
+7. gcloud app services list  (Lists all services in your app.)
+8.
+
+
+
 
 
 
