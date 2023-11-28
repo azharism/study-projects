@@ -114,7 +114,19 @@ app engine commands=================================================
 5. gcloud app logs tail -s [SERVICE]  (Streams logs from the specified service)
 6. gcloud app browse  (Opens the URL of your deployed app in the default web browser.)
 7. gcloud app services list  (Lists all services in your app.)
-8.
+8.ab -c 1000 -n 10000 (url)   for traffice generate randomly----
+=============================================================================================================
+1.upload nodejs foleder in cloudshell
+2. node server.js
+3. gcloud app deploy -v version-1
+3. gcloud app describe
+4.gcloud app instances list
+5. watch gcloud app instances list
+6. sudo apt install apache2-utils -y   (for traffice request generator on url)
+7. ab -c 1000 -n 10000 (url)   for traffice generate randomly
+==========================================================================================
+flex environement-----------------------
+1.time gcloud app deploy -v flex1
 
 
 
