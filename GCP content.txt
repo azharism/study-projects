@@ -124,9 +124,12 @@ app engine commands=================================================
 5. watch gcloud app instances list
 6. sudo apt install apache2-utils -y   (for traffice request generator on url)
 7. ab -c 1000 -n 10000 (url)   for traffice generate randomly
+================================================================
+8. gcloud app deploy service2-version1   (used for second service deploy)
 ==========================================================================================
 flex environement-----------------------
-1.time gcloud app deploy -v flex1
+1.time gcloud app deploy -v flex1    (used for flex environment app deployment)
+2.
 
 
 
