@@ -1,0 +1,7 @@
+runtime: nodejs
+env: flex
+network:
+  name: default
+  subnetwork_name: default
+manual_scaling:
+  instances: 1
