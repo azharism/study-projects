@@ -134,7 +134,7 @@ cloud run command------------------------
 1.gcloud builds submit -t gcr.io/$DEVSHELL_PROJECT_ID/cloudrun
 
 2. gcloud run deploy myservice --image=gcr.io/manto-roxen/cloudrun:ver1 --allow-u
-nauthenticated --platform managed --region=asia-southeast-1 
+nauthenticated --platform managed --region asia-southeast1 
 
 
 
