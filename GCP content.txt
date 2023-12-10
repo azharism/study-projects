@@ -141,6 +141,17 @@ cloud run command------------------------
 
 GKE----------------------------
 1. gcloud container clusters create
+==========================================================================================================================================================
+1. ipify.org website for ip api check code
+
+2. mysql -h 34.68.122.107 -u root -p
+==============================================
+cloudshell access ip----
+#!/bin/bash
+
+ip=$(curl -s https://api.ipify.org)
+echo "My public IP address is: $ip"
+
 
 
 
