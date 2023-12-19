@@ -234,9 +234,108 @@ helm plugin list                    # View a list of all installed plugins
 helm plugin update <plugin>         # Update plugins
 helm plugin uninstall <plugin>      # Uninstall a plugin
 ==========================================================================================================================
+project-1
+Create a repository using GCP Cloud Source Repository==============================
+1. gcloud services enable sourcerepo.googleapis.com
+2. gcloud source repos create web-html-app
+3. git clone https://source.developers.google.com/p/project111-id/r/web-html-app
+cd web-app
+4. vimindex.html
+<html>
+<title>GCP Demo Site</title>
+<head>
+</head>
+<body>
+<h1>GCP Demo Site</h1>
+<div>Application Demo</div>
+</body>
+</html>
 
+5. git config --global user.email "azharism.007@gmail.com"
+6. git config --global user.name "azhar"
+7. git add .
+8. git commit -m "add code"
+9.git push origin master
+=============================================================================================
+project----2
+Monitor Google Compute Engine for High CPU usage----
+Steps
 
+Create GCE and install Apache on it
+Create High CPU usage dashboard using json file
+Create Email notification channel
+Create Alert Policy using json file
+Install stress on GCE and increase load
+View Dashboard and Alert
 
+1. gcloud compute instances create  webserver --machine-type n1-standard-1 --image-family debian-11--image-project debian-cloud --zone europe-west1-b
+2. gcloud compute instances list
+3. inside the server
+4.sudo apt update
+5. sudo apt install apache2 -y
+6. sudo systemctl enable apache2
+7.sudo systemctl status apache2
+8. vim gcehighcpu-dashboard.json
+{
+  "dashboardFilters": [],
+  "displayName": "GCEHighCPUDashBoard",
+  "labels": {},
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "height": 4,
+        "widget": {
+          "title": "VM Instance - CPU utilization [MEAN]",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "breakdowns": [],
+                "dimensions": [],
+                "measures": [],
+                "minAlignmentPeriod": "60s",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "60s",
+                      "crossSeriesReducer": "REDUCE_MEAN",
+                      "groupByFields": [
+                        "metric.label.\"instance_name\""
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"compute.googleapis.com/instance/cpu/utilization\" resource.type=\"gce_instance\""
+                  }
+                }
+              }
+            ],
+            "thresholds": [],
+            "yAxis": {
+              "label": "",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 6
+      }
+    ]
+  }
+}
+
+9. gcloud monitoring dashboards create --config-from-file=gcehighcpu-dashboard.json
+
+10. gcloud monitoring dashboards list
+==Create Email notification channel==
+11. gcloud alpha monitoring channels create --display-name="azhar" --description="Email Alert" --type=email --channel-labels=email_address=pazharism51@gmail.com
+12. gcloud alpha monitoring channels list
+
+Add this notification channel id — 5004210260999533982 in alert policy json file as shown below==============================================
+1. vim gcehighcpu-alert.json 
 
 
 
